@@ -1,5 +1,5 @@
 export default class World {
-  message: number;
+  message: string;
 
   constructor(message: string) {
     this.message = message;
