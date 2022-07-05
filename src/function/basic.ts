@@ -11,3 +11,21 @@ export function logMessage3(message: string): void {
 export const alwaysThrowError = (message: string): never => {
   throw new Error(message);
 };
+
+/**
+ * 呼び出しシグネチャ（省略記法）
+ */
+type LogMessage = (message: string) => void;
+export const logMessage6: LogMessage = (message) => {
+  console.log("Function basic sample 6 : ", message);
+};
+
+/**
+ * 完全な呼び出しシグネチャ
+ */
+type FullLogMessage = {
+  (message: string): void;
+};
+export const logMessage7: FullLogMessage = (message) => {
+  console.log("Function basic sample 7 : ", message);
+};

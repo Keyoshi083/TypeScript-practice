@@ -23,3 +23,12 @@ export const isUserSignedIn2 = (userId: string, username = "TestUser"): boolean 
     return false;
   }
 };
+
+/**
+ * レストパラメータを使う関数
+ */
+export const sumProductsPrice = (...productsPrice: number[]): number => {
+  return productsPrice.reduce((prevTotal: number, productPrice: number) => {
+    return prevTotal + productPrice;
+  }, 0);
+};
