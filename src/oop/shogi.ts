@@ -2,8 +2,8 @@ type Suji = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type Dan = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 type Player = "first" | "second";
 class Game {
-  private pieces = Game.makePiecies();
-  private static makePiecies() {
+  private pieces = Game.makePieces();
+  private static makePieces() {
     return [new Osho("first", 5, "1"), new Osho("second", 5, "9")];
   }
 }
@@ -68,8 +68,22 @@ class Osho extends Piece {
   canMoveTo(position: Position, player: Player): boolean {
     const distance = this.position.distanceFrom(position, player);
     //王将は全方向１マスずつ進める
-    return distance.dan < 2 && distance.dan < 2;
+    return distance.dan < 2 && distance.suji < 2;
   }
 }
 
 //TODO:歩となり金を実装する
+
+class Fu extends Piece {
+  canMoveTo(position: Position, player: Player): boolean {
+    const distance = this.position.distanceFrom(position, player);
+    return distance.suji === 1 && distance.dan === 0;
+  }
+}
+
+class NariKin extends Fu {
+  canMoveTo(position: Position, player: Player): boolean {
+    const distance = this.position.distanceFrom(position, player);
+    return distance.dan < 2 && distance.suji < 2 && distance.dan === -1 && distance.suji !== 0;
+  }
+}
